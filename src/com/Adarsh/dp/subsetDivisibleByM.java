@@ -1,0 +1,35 @@
+package com.Adarsh.dp;
+
+public class subsetDivisibleByM {
+    public static void main(String []args){
+        int arr[]={2,7};
+        int m=6;
+        int N=arr.length;
+        int sum=0;
+        for(int i=0;i<N;i++){
+            sum=sum+arr[i];
+        }
+       // System.out.println(sum);
+       // System.out.println(sum%m==0);
+        boolean isDiv=subsetDiv(arr,sum,m,N);
+        System.out.println(isDiv);
+    }
+
+    private static boolean subsetDiv(int[] arr, int sum, int m, int n) {
+        if(sum % m==0 && sum!=0){
+
+            return true;
+        }
+        if(n==0){
+            return false;
+        }
+
+        if(sum >=arr[n-1]){
+            return subsetDiv(arr,sum-arr[n-1],m,n-1) || subsetDiv(arr,sum,m,n-1);
+        }
+        else{
+            return subsetDiv(arr,sum,m,n-1);
+        }
+
+    }
+}
